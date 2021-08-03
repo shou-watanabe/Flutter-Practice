@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'package:food_delivery_app/details_screen.dart';
 import 'package:food_delivery_app/constants.dart';
 import "package:food_delivery_app/widgets/food_card.dart";
 import "package:food_delivery_app/widgets/category_title.dart";
-
 
 void main() {
   runApp(MyApp());
@@ -46,7 +46,9 @@ class HomeScreen extends StatelessWidget {
         height: 80,
         width: 80,
         decoration: BoxDecoration(
-            shape: BoxShape.circle, color: kPrimaryColor.withOpacity(.26)),
+          shape: BoxShape.circle,
+          color: kPrimaryColor.withOpacity(.26),
+        ),
         child: Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -119,6 +121,14 @@ class HomeScreen extends StatelessWidget {
                   calories: "420Kcal",
                   description:
                       "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. ",
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return DetailsScreen();
+                      }),
+                    );
+                  },
                 ),
                 FoodCard(
                   title: "Vegan salad bowl",
@@ -127,6 +137,7 @@ class HomeScreen extends StatelessWidget {
                   calories: "420Kcal",
                   description:
                       "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. ",
+                  press: () {},
                 ),
                 SizedBox(width: 20),
               ],
