@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:food_delivery_app/constants.dart';
+import "package:food_delivery_app/widgets/food_card.dart";
+import "package:food_delivery_app/widgets/category_title.dart";
+
 
 void main() {
   runApp(MyApp());
@@ -23,6 +27,9 @@ class MyApp extends StatelessWidget {
           button: TextStyle(
             fontWeight: FontWeight.bold,
           ),
+          headline6: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       home: HomeScreen(),
@@ -34,6 +41,23 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        padding: EdgeInsets.all(10),
+        height: 80,
+        width: 80,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle, color: kPrimaryColor.withOpacity(.26)),
+        child: Container(
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: kPrimaryColor,
+          ),
+          child: SvgPicture.asset(
+            "assets/icons/plus.svg",
+          ),
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -83,31 +107,32 @@ class HomeScreen extends StatelessWidget {
               border: Border.all(color: kBorderColor),
             ),
             child: SvgPicture.asset("assets/icons/search.svg"),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                FoodCard(
+                  title: "Vegan salad bowl",
+                  image: "assets/images/image_1.png",
+                  price: 20,
+                  calories: "420Kcal",
+                  description:
+                      "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. ",
+                ),
+                FoodCard(
+                  title: "Vegan salad bowl",
+                  image: "assets/images/image_2.png",
+                  price: 20,
+                  calories: "420Kcal",
+                  description:
+                      "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. ",
+                ),
+                SizedBox(width: 20),
+              ],
+            ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class CategoryTitle extends StatelessWidget {
-  final String title;
-  final bool activate;
-  const CategoryTitle({
-    Key? key,
-    this.activate = false,
-    this.title = "",
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 30),
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.button!.copyWith(
-              color: activate ? kPrimaryColor : kTextColor.withOpacity(.4),
-            ),
       ),
     );
   }
